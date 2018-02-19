@@ -27,7 +27,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         String b1Val;
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            RequestsSingleton.getInstance(getApplicationContext()).setB1Val(b1Val); // (for when singleton class is done, will want to send all values at the same time so need private variables for all seekbars)
+            RequestsSingleton.getInstance(getApplicationContext()).setB1Val(b1Val);
             RequestsSingleton.getInstance(getApplicationContext()).sendData();
         }
         @Override
@@ -44,7 +44,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         String g1Val;
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            RequestsSingleton.getInstance(getApplicationContext()).setG1Val(g1Val); // (for when singleton class is done, will want to send all values at the same time so need private variables for all seekbars)
+            RequestsSingleton.getInstance(getApplicationContext()).setG1Val(g1Val);
             RequestsSingleton.getInstance(getApplicationContext()).sendData();
         }
         @Override
@@ -61,7 +61,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         String r1Val;
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            RequestsSingleton.getInstance(getApplicationContext()).setR1Val(r1Val); // (for when singleton class is done, will want to send all values at the same time so need private variables for all seekbars)
+            RequestsSingleton.getInstance(getApplicationContext()).setR1Val(r1Val); 
             RequestsSingleton.getInstance(getApplicationContext()).sendData();
         }
         @Override
