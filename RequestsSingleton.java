@@ -7,8 +7,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,13 +25,9 @@ public class RequestsSingleton {
     private RequestQueue myRequestQueue;
     private static Context myContext;
 
-    private String url = "http://192.168.0.51/index.php"; //ip address of rpi
+    //private String url = "http://192.168.0.51/index.php"; //ip address of rpi
+    private String url = "http://192.168.0.51:8080"; //testing python
     private StringRequest stringRequest;
-
-    private String r1Val = "0";
-    private String g1Val = "0";
-    private String b1Val = "0";
-    private String mode = "1"; //should start in mode 1 (auto mode)
 
     private RequestsSingleton(Context context) {
         myContext = context;
@@ -53,28 +52,13 @@ public class RequestsSingleton {
         getRequestQueue().add(request);
     }
 
-    public void setMode(String m){
-        mode = m;
-    }
 
-    public void setR1Val(String r1){
-        r1Val = r1;
-    }
-
-    public void setG1Val(String g1){
-        g1Val = g1;
-    }
-
-    public void setB1Val(String b1){
-        b1Val = b1;
-    }
-
-    public void sendData(){
-        stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
+    public void sendData(final JSONObject data){
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url,data,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response) {
-                        Log.i("",response);
+                    public void onResponse(JSONObject response) {
+                        Log.i("",response.toString());
                     }
                 },
                 new Response.ErrorListener() {
@@ -82,19 +66,9 @@ public class RequestsSingleton {
                     public void onErrorResponse(VolleyError e) {
                         Log.e("error",e.toString());
                     }
-                }){
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<>();
-                params.put("mode",mode);
-                params.put("r1", r1Val);
-                params.put("g1", g1Val);
-                params.put("b1", b1Val);
-                return params;
-            }
-        };
-        addToRequestQueue(stringRequest);
+                });
+
+        addToRequestQueue(jsonRequest);
     }
 
 }

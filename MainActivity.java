@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
 
+    public DataHandler dataHandler = new DataHandler("1",255);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,22 +18,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startAutoMode(View view){
-        RequestsSingleton.getInstance(getApplicationContext()).setMode("1");
-        RequestsSingleton.getInstance(getApplicationContext()).sendData();
+        dataHandler.setMode("1");
+        JSONObject data = dataHandler.getProcessedData();
+        RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
     }
 
     public void startSelectColour(View view){
-        RequestsSingleton.getInstance(getApplicationContext()).setMode("2");
-        //always start this mode at full brightness, white light
-        RequestsSingleton.getInstance(getApplicationContext()).setR1Val("255");
-        RequestsSingleton.getInstance(getApplicationContext()).setG1Val("255");
-        RequestsSingleton.getInstance(getApplicationContext()).sendData();
+       // String data = dataHandler.getProcessedData();
+       // RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
         Intent startIntent = new Intent(getApplicationContext(), ColourSelectActivity.class);
         startActivity(startIntent);
     }
 
     public void startSoundReact(View view){
-        RequestsSingleton.getInstance(getApplicationContext()).setMode("3");
-        RequestsSingleton.getInstance(getApplicationContext()).sendData();
+        dataHandler.setMode("3");
+        JSONObject data = dataHandler.getProcessedData();
+        RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
     }
 }
