@@ -129,14 +129,14 @@ public class DataHandler {
     }
 
     public String getBackgroundColour1(){
-        return "#"+colour1;
+        return "#7F"+colour1; //50% transparent
     }
 
     public String getBackgroundColour2(){
-        return "#"+colour2;
+        return "#7F"+colour2;
     }
 
     public String getBackgroundColour3(){
-        return "#"+colour3;
+        return "#7F"+colour3;
     }
 }
