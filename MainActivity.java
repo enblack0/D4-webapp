@@ -11,15 +11,20 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     public DataHandler dataHandler = new DataHandler("1",255);
+    public NukeSSLCerts nukeSSlCerts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        nukeSSlCerts.nuke();
+
     }
 
     public void startAutoMode(View view){
         dataHandler.setMode("1");
         JSONObject data = dataHandler.getProcessedData();
+        //RequestsSingleton.getInstance(getApplicationContext()).sendGet();
         RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
     }
 

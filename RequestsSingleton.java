@@ -26,7 +26,9 @@ public class RequestsSingleton {
     private static Context myContext;
 
     //private String url = "http://192.168.0.51/index.php"; //ip address of rpi
-    private String url = "http://192.168.0.51:8080"; //testing python
+    private String url = "https://192.168.0.51:8080"; //testing python
+    //private String url = "https://google.com"; //testing https
+
     private StringRequest stringRequest;
 
     private RequestsSingleton(Context context) {
@@ -52,13 +54,29 @@ public class RequestsSingleton {
         getRequestQueue().add(request);
     }
 
+    public void sendGet() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        Log.i("Response","response received");
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError e) {
+                Log.e("error", e.toString());
+            }
+        });
+        addToRequestQueue(stringRequest);
+    }
 
     public void sendData(final JSONObject data){
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url,data,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.i("",response.toString());
+                        Log.i("response","response received");
                     }
                 },
                 new Response.ErrorListener() {
