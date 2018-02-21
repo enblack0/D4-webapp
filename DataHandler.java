@@ -1,5 +1,6 @@
 package com.enb1g16.activitylauncher;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONObject;
@@ -115,6 +116,7 @@ public class DataHandler {
         }
         setColour3();
     }
+
 
     private void setColour1(){
         colour1 = r1+g1+b1;

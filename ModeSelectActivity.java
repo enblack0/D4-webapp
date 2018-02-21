@@ -23,7 +23,7 @@ public class ModeSelectActivity extends AppCompatActivity {
         dataHandler.setMode("1");
         JSONObject data = dataHandler.getProcessedData();
         //RequestsSingleton.getInstance(getApplicationContext()).sendGet();
-        RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
+        RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
     }
 
     public void startSelectColour(View view){
@@ -36,7 +36,7 @@ public class ModeSelectActivity extends AppCompatActivity {
     public void startSoundReact(View view){
         dataHandler.setMode("3");
         JSONObject data = dataHandler.getProcessedData();
-        RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
+        RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
     }
 
 }

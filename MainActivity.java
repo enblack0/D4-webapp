@@ -35,9 +35,9 @@ public class MainActivity extends AppCompatActivity{
                 }else {
                     Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
                     RequestsSingleton.getInstance(getApplicationContext()).setAuthToken(response);
+                    Intent startIntent = new Intent(getApplicationContext(), ModeSelectActivity.class);
+                    startActivity(startIntent);
                 }
-                //Intent startIntent = new Intent(getApplicationContext(), ModeSelectActivity.class);
-                //startActivity(startIntent);
             }
         });
     }

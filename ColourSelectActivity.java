@@ -18,7 +18,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //send initial colour data
         JSONObject data = dataHandler.getProcessedData();
-        RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
+        RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
         setContentView(R.layout.activity_colour_select);
         SeekBar r1SeekBar = findViewById(R.id.r1SeekBar);
         SeekBar g1SeekBar = findViewById(R.id.g1SeekBar);
@@ -53,7 +53,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
+            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -71,7 +71,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
+            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -88,7 +88,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
+            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -105,7 +105,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
+            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -122,7 +122,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
+            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -139,7 +139,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
+            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -156,7 +156,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
+            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -173,7 +173,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
+            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -190,7 +190,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendData(data);
+            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {

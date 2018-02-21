@@ -32,8 +32,6 @@ public class RequestsSingleton {
     //private String url = "https://192.168.0.51:8080"; //testing python
     //private String url = "https://google.com"; //testing https
 
-    private StringRequest stringRequest;
-
     private RequestsSingleton(Context context) {
         myContext = context;
         myRequestQueue = getRequestQueue();
@@ -56,7 +54,7 @@ public class RequestsSingleton {
     public<T> void addToRequestQueue(Request<T> request){
         getRequestQueue().add(request);
     }
-    
+
 
     public void postLogin(final String password, final httpResponseInterface callback) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -84,23 +82,43 @@ public class RequestsSingleton {
         addToRequestQueue(stringRequest);
     }
 
-    public void sendData(final JSONObject data){
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, url,data,
-                new Response.Listener<JSONObject>() {
+    public void sendDataPost(final JSONObject data) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        Log.i("response","response received");
+                    public void onResponse(String response) {
+                        Log.i("Response",response.trim());
+                        Toast.makeText(myContext.getApplicationContext(), response.trim(), Toast.LENGTH_SHORT).show();
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError e) {
-                        Log.e("error",e.toString());
-                    }
-                });
-
-        addToRequestQueue(jsonRequest);
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError e) {
+                Log.e("error", e.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams(){
+                String mode,colour1,colour2,colour3;
+                Map<String, String>  params = new HashMap<String, String>();
+                try{
+                    mode = data.getString("mode");
+                    colour1 = data.getString("colour1");
+                    colour2 = data.getString("colour2");
+                    colour3 = data.getString("colour3");
+                    params.put("authToken", auth_token);
+                    params.put("mode",mode);
+                    params.put("colour1",colour1);
+                    params.put("colour2",colour2);
+                    params.put("colour3",colour3);
+                }catch(Exception e) {
+                    Log.e("Json parsing error:", e.toString());
+                }
+                return params;
+            }
+        };
+        addToRequestQueue(stringRequest);
     }
+
 
     public void setAuthToken(String auth){
         auth_token = auth;
