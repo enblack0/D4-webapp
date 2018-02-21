@@ -2,6 +2,7 @@ package com.enb1g16.activitylauncher;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,9 +25,11 @@ public class RequestsSingleton {
     private static RequestsSingleton myInstance;
     private RequestQueue myRequestQueue;
     private static Context myContext;
+    private String auth_token;
+    private String responseCode = "init";
 
-    //private String url = "http://192.168.0.51/index.php"; //ip address of rpi
-    private String url = "https://192.168.0.51:8080"; //testing python
+    private String url = "https://192.168.0.51/index.php"; //ip address of rpi
+    //private String url = "https://192.168.0.51:8080"; //testing python
     //private String url = "https://google.com"; //testing https
 
     private StringRequest stringRequest;
@@ -53,21 +56,31 @@ public class RequestsSingleton {
     public<T> void addToRequestQueue(Request<T> request){
         getRequestQueue().add(request);
     }
+    
 
-    public void sendGet() {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+    public void postLogin(final String password, final httpResponseInterface callback) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        Log.i("Response","response received");
+                        responseCode = response.trim();
+                        callback.onHttpResponse(responseCode);
+                        Log.i("Response",responseCode);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError e) {
                 Log.e("error", e.toString());
+               responseCode = e.toString().trim();
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("password", password);
+                return params;
+            }
+        };
         addToRequestQueue(stringRequest);
     }
 
@@ -87,6 +100,10 @@ public class RequestsSingleton {
                 });
 
         addToRequestQueue(jsonRequest);
+    }
+
+    public void setAuthToken(String auth){
+        auth_token = auth;
     }
 
 }
