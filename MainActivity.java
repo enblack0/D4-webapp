@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity{
 
     public void attemptLogin(View view){
         EditText pwdEditText = (EditText) findViewById(R.id.pwdEditText);
-        RequestsSingleton.getInstance(getApplicationContext()).postLogin(pwdEditText.getText().toString(), new httpResponseInterface(){
+        final String password = pwdEditText.getText().toString();
+        RequestsSingleton.getInstance(getApplicationContext()).postLogin(password, new httpResponseInterface(){
             @Override
             public void onHttpResponse(String httpResponse){
                 response = httpResponse;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity{
                     Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
-                    RequestsSingleton.getInstance(getApplicationContext()).setAuthToken(response);
+                    RequestsSingleton.getInstance(getApplicationContext()).setAuthToken(password);
                     Intent startIntent = new Intent(getApplicationContext(), ModeSelectActivity.class);
                     startActivity(startIntent);
                 }

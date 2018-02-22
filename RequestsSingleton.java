@@ -105,7 +105,7 @@ public class RequestsSingleton {
                     colour1 = data.getString("colour1");
                     colour2 = data.getString("colour2");
                     colour3 = data.getString("colour3");
-                    params.put("authToken", auth_token);
+                    params.put("password", auth_token);
                     params.put("mode",mode);
                     params.put("colour1",colour1);
                     params.put("colour2",colour2);
@@ -118,7 +118,6 @@ public class RequestsSingleton {
         };
         addToRequestQueue(stringRequest);
     }
-
 
     public void setAuthToken(String auth){
         auth_token = auth;

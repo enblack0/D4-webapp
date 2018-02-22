@@ -8,7 +8,7 @@ import android.view.View;
 import org.json.JSONObject;
 
 public class ModeSelectActivity extends AppCompatActivity {
-    public DataHandler dataHandler = new DataHandler("1",255);
+    public DataHandler dataHandler = new DataHandler("1",255); //initialize mode to 1 and colours to 255
     //public NukeSSLCerts nukeSSlCerts;
 
     @Override
