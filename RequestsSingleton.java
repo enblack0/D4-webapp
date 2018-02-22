@@ -25,7 +25,7 @@ public class RequestsSingleton {
     private static RequestsSingleton myInstance;
     private RequestQueue myRequestQueue;
     private static Context myContext;
-    private String auth_token;
+    private String password;
     private String responseCode = "init";
 
     private String url = "https://192.168.0.51/index.php"; //ip address of rpi
@@ -82,6 +82,31 @@ public class RequestsSingleton {
         addToRequestQueue(stringRequest);
     }
 
+    public void postChangePass(final String oldPass, final String newPass){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("Response",response.trim());
+                        Toast.makeText(myContext.getApplicationContext(), response.trim(), Toast.LENGTH_SHORT).show();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError e) {
+                Log.e("error", e.toString());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("oldPassword", oldPass);
+                params.put("newPassword", newPass);
+                return params;
+            }
+        };
+        addToRequestQueue(stringRequest);
+    }
+
     public void sendDataPost(final JSONObject data) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -105,7 +130,7 @@ public class RequestsSingleton {
                     colour1 = data.getString("colour1");
                     colour2 = data.getString("colour2");
                     colour3 = data.getString("colour3");
-                    params.put("password", auth_token);
+                    params.put("password", password);
                     params.put("mode",mode);
                     params.put("colour1",colour1);
                     params.put("colour2",colour2);
@@ -119,8 +144,8 @@ public class RequestsSingleton {
         addToRequestQueue(stringRequest);
     }
 
-    public void setAuthToken(String auth){
-        auth_token = auth;
+    public void setPassword(String pass){
+        password = pass;
     }
 
 }

@@ -24,6 +24,11 @@ public class MainActivity extends AppCompatActivity{
         nukeSSlCerts.nuke();
     }
 
+    public void goToChangePass(View view){
+        Intent changePassIntent =  new Intent(getApplicationContext(), ChangePassActivity.class);
+        startActivity(changePassIntent);
+    }
+
     public void attemptLogin(View view){
         EditText pwdEditText = (EditText) findViewById(R.id.pwdEditText);
         final String password = pwdEditText.getText().toString();
@@ -32,12 +37,18 @@ public class MainActivity extends AppCompatActivity{
             public void onHttpResponse(String httpResponse){
                 response = httpResponse;
                 if(response.equals("Incorrect password")){
-                    Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_SHORT).show();
-                }else {
+                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                }else if(response.equals("Change default password")) {
+                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                    Intent changePassIntent = new Intent(getApplicationContext(), ChangePassActivity.class);
+                    startActivity(changePassIntent);
+                } else if(response.equals("Correct password")) {
                     Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
-                    RequestsSingleton.getInstance(getApplicationContext()).setAuthToken(password);
+                    RequestsSingleton.getInstance(getApplicationContext()).setPassword(password);
                     Intent startIntent = new Intent(getApplicationContext(), ModeSelectActivity.class);
                     startActivity(startIntent);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Server error", Toast.LENGTH_SHORT).show();
                 }
             }
         });
