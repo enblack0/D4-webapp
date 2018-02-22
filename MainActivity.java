@@ -25,11 +25,17 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void goToChangePass(View view){
+        EditText urlEditText = findViewById(R.id.urlEditText);
+        String url = urlEditText.getText().toString();
+        RequestsSingleton.getInstance(getApplicationContext()).setURL(url);
         Intent changePassIntent =  new Intent(getApplicationContext(), ChangePassActivity.class);
         startActivity(changePassIntent);
     }
 
     public void attemptLogin(View view){
+        EditText urlEditText = findViewById(R.id.urlEditText);
+        String url = urlEditText.getText().toString();
+        RequestsSingleton.getInstance(getApplicationContext()).setURL(url);
         EditText pwdEditText = (EditText) findViewById(R.id.pwdEditText);
         final String password = pwdEditText.getText().toString();
         RequestsSingleton.getInstance(getApplicationContext()).postLogin(password, new httpResponseInterface(){

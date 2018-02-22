@@ -32,6 +32,10 @@ public class RequestsSingleton {
     //private String url = "https://192.168.0.51:8080"; //testing python
     //private String url = "https://google.com"; //testing https
 
+    public void setURL(String Url){
+        url = Url;
+    }
+
     private RequestsSingleton(Context context) {
         myContext = context;
         myRequestQueue = getRequestQueue();
