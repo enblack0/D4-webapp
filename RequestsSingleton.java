@@ -73,6 +73,7 @@ public class RequestsSingleton {
             @Override
             public void onErrorResponse(VolleyError e) {
                 Log.e("error", e.toString());
+                Toast.makeText(myContext.getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
                responseCode = e.toString().trim();
             }
         }){
@@ -98,6 +99,7 @@ public class RequestsSingleton {
             @Override
             public void onErrorResponse(VolleyError e) {
                 Log.e("error", e.toString());
+                Toast.makeText(myContext.getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
@@ -123,6 +125,7 @@ public class RequestsSingleton {
             @Override
             public void onErrorResponse(VolleyError e) {
                 Log.e("error", e.toString());
+                Toast.makeText(myContext.getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
