@@ -21,9 +21,8 @@ public class ModeSelectActivity extends AppCompatActivity {
 
     public void startAutoMode(View view){
         dataHandler.setMode("1");
-        JSONObject data = dataHandler.getProcessedData();
-        //RequestsSingleton.getInstance(getApplicationContext()).sendGet();
-        RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
+        DataPacket packet = dataHandler.getProcessedData();
+        RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
     }
 
     public void startSelectColour(View view){
@@ -35,8 +34,8 @@ public class ModeSelectActivity extends AppCompatActivity {
 
     public void startSoundReact(View view){
         dataHandler.setMode("3");
-        JSONObject data = dataHandler.getProcessedData();
-        RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
+        DataPacket packet = dataHandler.getProcessedData();
+        RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
     }
 
 }

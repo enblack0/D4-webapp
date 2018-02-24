@@ -15,7 +15,6 @@ public class DataHandler {
     private String colour2;
     private String colour3;
     private String mode;
-    private JSONObject dataPacket = new JSONObject();
     private String r1,g1,b1,r2,g2,b2,r3,g3,b3;
 
     //constructor to initialise a uniform colour
@@ -32,16 +31,9 @@ public class DataHandler {
         setB3(startColour);
     }
 
-    public JSONObject getProcessedData(){
-        try{
-            dataPacket.put("mode",mode);
-            dataPacket.put("colour1",colour1);
-            dataPacket.put("colour2",colour2);
-            dataPacket.put("colour3",colour3);
-        }catch(Exception e){
-            Log.e("error in Json code",e.toString());
-        }
-        return dataPacket;
+    public DataPacket getProcessedData(){
+        DataPacket packet = new DataPacket(mode,colour1,colour2,colour3,4);
+        return packet;
     }
 
     public void setMode(String m){

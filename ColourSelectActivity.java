@@ -17,8 +17,8 @@ public class ColourSelectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //send initial colour data
-        JSONObject data = dataHandler.getProcessedData();
-        RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
+        DataPacket packet = dataHandler.getProcessedData();
+        RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
         setContentView(R.layout.activity_colour_select);
         SeekBar r1SeekBar = findViewById(R.id.r1SeekBar);
         SeekBar g1SeekBar = findViewById(R.id.g1SeekBar);
@@ -52,8 +52,8 @@ public class ColourSelectActivity extends AppCompatActivity {
     public SeekBar.OnSeekBarChangeListener b1SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
+            DataPacket packet = dataHandler.getProcessedData();
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -70,8 +70,8 @@ public class ColourSelectActivity extends AppCompatActivity {
     public SeekBar.OnSeekBarChangeListener g1SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
+            DataPacket packet = dataHandler.getProcessedData();
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -87,8 +87,8 @@ public class ColourSelectActivity extends AppCompatActivity {
     public SeekBar.OnSeekBarChangeListener r1SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
+            DataPacket packet = dataHandler.getProcessedData();
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -104,8 +104,8 @@ public class ColourSelectActivity extends AppCompatActivity {
     public SeekBar.OnSeekBarChangeListener r2SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
+            DataPacket packet = dataHandler.getProcessedData();
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -121,8 +121,8 @@ public class ColourSelectActivity extends AppCompatActivity {
     public SeekBar.OnSeekBarChangeListener g2SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
+            DataPacket packet = dataHandler.getProcessedData();
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -138,8 +138,8 @@ public class ColourSelectActivity extends AppCompatActivity {
     public SeekBar.OnSeekBarChangeListener b2SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
+            DataPacket packet = dataHandler.getProcessedData();
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -155,8 +155,8 @@ public class ColourSelectActivity extends AppCompatActivity {
     public SeekBar.OnSeekBarChangeListener r3SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
+            DataPacket packet = dataHandler.getProcessedData();
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -172,8 +172,8 @@ public class ColourSelectActivity extends AppCompatActivity {
     public SeekBar.OnSeekBarChangeListener g3SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
+            DataPacket packet = dataHandler.getProcessedData();
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -189,8 +189,8 @@ public class ColourSelectActivity extends AppCompatActivity {
     public SeekBar.OnSeekBarChangeListener b3SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            JSONObject data = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).sendDataPost(data);
+            DataPacket packet = dataHandler.getProcessedData();
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {

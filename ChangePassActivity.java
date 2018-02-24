@@ -18,6 +18,7 @@ public class ChangePassActivity extends AppCompatActivity {
         EditText newPassEditText = (EditText) findViewById(R.id.newPassEditText);
         String oldPass = oldPassEditText.getText().toString();
         String newPass = newPassEditText.getText().toString();
-        RequestsSingleton.getInstance(getApplicationContext()).postChangePass(oldPass, newPass);
+        DataPacket packet = new DataPacket(oldPass, newPass, 2);
+        RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
     }
 }
