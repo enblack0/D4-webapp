@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.ToggleButton;
@@ -25,7 +26,20 @@ public class ModeSelectActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 DataPacket packet = new DataPacket(isChecked, DataPacket.packet_type.ENABLE);
+                Button autoModeBtn = findViewById(R.id.autoModeBtn);
+                Button colSelectBtn = findViewById(R.id.colSelectBtn);
+                Button soundReactBtn = findViewById(R.id.soundReactBtn);
+                if(isChecked){
+                    autoModeBtn.setEnabled(true);
+                    colSelectBtn.setEnabled(true);
+                    soundReactBtn.setEnabled(true);
+                }else{
+                    autoModeBtn.setEnabled(false);
+                    colSelectBtn.setEnabled(false);
+                    soundReactBtn.setEnabled(false);
+                }
                 RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
+
             }
         });
        // nukeSSlCerts.nuke();
