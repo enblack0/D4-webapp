@@ -17,6 +17,10 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.enb1g16.activitylauncher.DataPacket.packet_type.CHANGE_PASS;
+import static com.enb1g16.activitylauncher.DataPacket.packet_type.ENABLE;
+import static com.enb1g16.activitylauncher.DataPacket.packet_type.FULL_DATA;
+
 /**
  * Created by user on 19/02/2018.
  */
@@ -105,15 +109,18 @@ public class RequestsSingleton {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String>  params = new HashMap<String, String>();
-                if(packet.num_items==4) {
+                if(packet.pack_type==FULL_DATA) {
                     params.put("password", password);
                     params.put("mode", packet.mode);
                     params.put("colour1", packet.colour1);
                     params.put("colour2", packet.colour2);
                     params.put("colour3", packet.colour3);
-                }else if(packet.num_items==2){
+                }else if(packet.pack_type==CHANGE_PASS){
                     params.put("oldPassword",packet.oldPassword);
                     params.put("newPassword",packet.newPassword);
+                }else if(packet.pack_type==ENABLE){
+                    params.put("password",password);
+                    params.put("enable",packet.enable);
                 }
                 return params;
             }

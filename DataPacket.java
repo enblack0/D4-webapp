@@ -5,26 +5,34 @@ package com.enb1g16.activitylauncher;
  */
 
 public class DataPacket {
-    public String mode, colour1, colour2, colour3, newPassword, oldPassword, enable;
-    public int num_items;
+    public enum packet_type{MODE, ENABLE, FULL_DATA, CHANGE_PASS};
 
-    public DataPacket(String en, int numitems){
-        enable = en;
-        num_items = numitems;
+    public String mode, colour1, colour2, colour3, newPassword, oldPassword;
+    public String enable = "1";
+    packet_type pack_type;
+    //public int num_items;
+
+    public DataPacket(boolean en, packet_type packtype){
+        if(en){
+            enable="1";
+        } else{
+            enable = "0";
+        }
+        pack_type = packtype;
     }
 
-    public DataPacket(String oldpassword, String newpassword, int numitems){
+    public DataPacket(String oldpassword, String newpassword, packet_type packtype){
         newPassword = newpassword;
         oldPassword = oldpassword;
-        num_items = numitems;
+        pack_type = packtype;
     }
 
-    public DataPacket(String m, String col1, String col2, String col3, int numitems){
+    public DataPacket(String m, String col1, String col2, String col3, packet_type packtype){
         mode = m;
         colour1 = col1;
         colour2 = col2;
         colour3 = col3;
-        num_items = numitems;
+        pack_type = packtype;
     }
 
 }

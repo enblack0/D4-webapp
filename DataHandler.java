@@ -32,7 +32,7 @@ public class DataHandler {
     }
 
     public DataPacket getProcessedData(){
-        DataPacket packet = new DataPacket(mode,colour1,colour2,colour3,4);
+        DataPacket packet = new DataPacket(mode,colour1,colour2,colour3, DataPacket.packet_type.FULL_DATA);
         return packet;
     }
 
