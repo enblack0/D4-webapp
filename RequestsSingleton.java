@@ -20,6 +20,7 @@ import java.util.Map;
 import static com.enb1g16.activitylauncher.DataPacket.packet_type.CHANGE_PASS;
 import static com.enb1g16.activitylauncher.DataPacket.packet_type.ENABLE;
 import static com.enb1g16.activitylauncher.DataPacket.packet_type.FULL_DATA;
+import static com.enb1g16.activitylauncher.DataPacket.packet_type.MODE;
 
 /**
  * Created by user on 19/02/2018.
@@ -115,6 +116,9 @@ public class RequestsSingleton {
                     params.put("colour1", packet.colour1);
                     params.put("colour2", packet.colour2);
                     params.put("colour3", packet.colour3);
+                }else if(packet.pack_type==MODE){
+                    params.put("password",password);
+                    params.put("mode",packet.mode);
                 }else if(packet.pack_type==CHANGE_PASS){
                     params.put("oldPassword",packet.oldPassword);
                     params.put("newPassword",packet.newPassword);
