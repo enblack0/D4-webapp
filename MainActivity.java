@@ -44,28 +44,8 @@ public class MainActivity extends AppCompatActivity{
     public void attemptStoredPwdLogin(View view) {
         SharedPreferences storedPassFile = this.getSharedPreferences("JarvisAppData", Context.MODE_PRIVATE);
         final String password = storedPassFile.getString("Password", null);
-        RequestsSingleton.getInstance(getApplicationContext()).postLogin(password, new httpResponseInterface() {
-            @Override
-            public void onHttpResponse(String httpResponse) {
-                response = httpResponse;
-                if (response.equals("Incorrect password")) {
-                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-                } else if (response.equals("Change default password")) {
-                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-                    Intent changePassIntent = new Intent(getApplicationContext(), ChangePassActivity.class);
-                    startActivity(changePassIntent);
-                } else if (response.equals("Correct password")) {
-                    Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
-                    RequestsSingleton.getInstance(getApplicationContext()).setPassword(password);
-                    Intent startIntent = new Intent(getApplicationContext(), ModeSelectActivity.class);
-                    startActivity(startIntent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Server error", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        RequestsSingleton.getInstance(getApplicationContext()).postLogin(password);
     }
-
 
 
     public void attemptLogin(View view){
@@ -74,25 +54,6 @@ public class MainActivity extends AppCompatActivity{
         RequestsSingleton.getInstance(getApplicationContext()).setURL(url);
         EditText pwdEditText = (EditText) findViewById(R.id.pwdEditText);
         final String password = pwdEditText.getText().toString();
-        RequestsSingleton.getInstance(getApplicationContext()).postLogin(password, new httpResponseInterface(){
-            @Override
-            public void onHttpResponse(String httpResponse){
-                response = httpResponse;
-                if(response.equals("Incorrect password")){
-                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-                }else if(response.equals("Change default password")) {
-                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-                    Intent changePassIntent = new Intent(getApplicationContext(), ChangePassActivity.class);
-                    startActivity(changePassIntent);
-                } else if(response.equals("Correct password")) {
-                    Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
-                    RequestsSingleton.getInstance(getApplicationContext()).setPassword(password);
-                    Intent startIntent = new Intent(getApplicationContext(), ModeSelectActivity.class);
-                    startActivity(startIntent);
-                }else{
-                    Toast.makeText(getApplicationContext(), "Server error", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        RequestsSingleton.getInstance(getApplicationContext()).postLogin(password);
     }
 }

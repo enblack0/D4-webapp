@@ -69,34 +69,6 @@ public class RequestsSingleton {
         getRequestQueue().add(request);
     }
 
-
-    public void postLogin(final String password, final httpResponseInterface callback) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        responseCode = response.trim();
-                        callback.onHttpResponse(responseCode);
-                        Log.i("Response",responseCode);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError e) {
-                Log.e("error", e.toString());
-                Toast.makeText(myContext.getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
-               responseCode = e.toString().trim();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams(){
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("password", password);
-                return params;
-            }
-        };
-        addToRequestQueue(stringRequest);
-    }
-
     private void getSavePassDialog(final String newPassword, final Context activityContext){
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(activityContext);
         alertBuilder.setMessage("Would you like to save your password?");
@@ -133,6 +105,48 @@ public class RequestsSingleton {
 
         AlertDialog alert11 = alertBuilder.create();
         alert11.show();
+    }
+    private void processPostResponse(String response, String password){
+        if (response.equals("Incorrect password")) {
+            Toast.makeText(myContext, response, Toast.LENGTH_SHORT).show();
+        } else if (response.equals("Change default password")) {
+            Toast.makeText(myContext, response, Toast.LENGTH_SHORT).show();
+            Intent changePassIntent = new Intent(myContext, ChangePassActivity.class);
+            myContext.startActivity(changePassIntent);
+        } else if (response.equals("Correct password")) {
+            Toast.makeText(myContext, "Login successful", Toast.LENGTH_SHORT).show();
+            setPassword(password);
+            Intent startIntent = new Intent(myContext, ModeSelectActivity.class);
+            myContext.startActivity(startIntent);
+        } else {
+            Toast.makeText(myContext, "Server error", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void postLogin(final String password) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("Response",response.trim());
+                        Toast.makeText(myContext.getApplicationContext(), response.trim(), Toast.LENGTH_SHORT).show();
+                        processPostResponse(response.trim(), password);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError e) {
+                Log.e("error", e.toString());
+                Toast.makeText(myContext.getApplicationContext(), "Network error", Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("password", password);
+                return params;
+            }
+        };
+        addToRequestQueue(stringRequest);
     }
 
     public void postData(final DataPacket packet, final Context activityContext) {
