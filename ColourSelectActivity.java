@@ -18,7 +18,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //send initial colour data
         DataPacket packet = dataHandler.getProcessedData();
-        RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
+        RequestsSingleton.getInstance(getApplicationContext()).postData(packet, this);
         setContentView(R.layout.activity_colour_select);
         SeekBar r1SeekBar = findViewById(R.id.r1SeekBar);
         SeekBar g1SeekBar = findViewById(R.id.g1SeekBar);
@@ -53,7 +53,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             DataPacket packet = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -71,7 +71,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             DataPacket packet = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -88,7 +88,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             DataPacket packet = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -105,7 +105,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             DataPacket packet = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -122,7 +122,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             DataPacket packet = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -139,7 +139,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             DataPacket packet = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -156,7 +156,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             DataPacket packet = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -173,7 +173,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             DataPacket packet = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
@@ -190,7 +190,7 @@ public class ColourSelectActivity extends AppCompatActivity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             DataPacket packet = dataHandler.getProcessedData();
-            RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
+            RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {

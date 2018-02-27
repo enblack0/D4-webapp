@@ -1,6 +1,8 @@
 package com.enb1g16.activitylauncher;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +23,13 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode_select); //should really be activity_login!
+        SharedPreferences storedPassFile = this.getSharedPreferences("JarvisAppData",Context.MODE_PRIVATE);
+        Button storedPwdButton = findViewById(R.id.storedPwdBtn);
+        if(storedPassFile.contains("Password")){
+            storedPwdButton.setVisibility(View.VISIBLE);
+        }else{
+            storedPwdButton.setVisibility(View.GONE);
+        }
         nukeSSlCerts.nuke();
     }
 
@@ -31,6 +40,33 @@ public class MainActivity extends AppCompatActivity{
         Intent changePassIntent =  new Intent(getApplicationContext(), ChangePassActivity.class);
         startActivity(changePassIntent);
     }
+
+    public void attemptStoredPwdLogin(View view) {
+        SharedPreferences storedPassFile = this.getSharedPreferences("JarvisAppData", Context.MODE_PRIVATE);
+        final String password = storedPassFile.getString("Password", null);
+        RequestsSingleton.getInstance(getApplicationContext()).postLogin(password, new httpResponseInterface() {
+            @Override
+            public void onHttpResponse(String httpResponse) {
+                response = httpResponse;
+                if (response.equals("Incorrect password")) {
+                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                } else if (response.equals("Change default password")) {
+                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                    Intent changePassIntent = new Intent(getApplicationContext(), ChangePassActivity.class);
+                    startActivity(changePassIntent);
+                } else if (response.equals("Correct password")) {
+                    Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
+                    RequestsSingleton.getInstance(getApplicationContext()).setPassword(password);
+                    Intent startIntent = new Intent(getApplicationContext(), ModeSelectActivity.class);
+                    startActivity(startIntent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Server error", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+
 
     public void attemptLogin(View view){
         EditText urlEditText = findViewById(R.id.urlEditText);

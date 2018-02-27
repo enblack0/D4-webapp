@@ -1,7 +1,12 @@
 package com.enb1g16.activitylauncher;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -92,13 +97,56 @@ public class RequestsSingleton {
         addToRequestQueue(stringRequest);
     }
 
-    public void postData(final DataPacket packet) {
+    private void getSavePassDialog(final String newPassword, final Context activityContext){
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(activityContext);
+        alertBuilder.setMessage("Would you like to save your password?");
+        alertBuilder.setCancelable(true);
+        alertBuilder.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        SharedPreferences storedPassFile = activityContext.getApplicationContext().getSharedPreferences("JarvisAppData",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = storedPassFile.edit();
+                        editor.putString("Password", newPassword);
+                        editor.apply();
+                        Intent startIntent = new Intent(myContext, MainActivity.class);
+                        myContext.startActivity(startIntent);
+                        dialog.cancel();
+                    }
+                });
+
+        alertBuilder.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        SharedPreferences storedPassFile = activityContext.getApplicationContext().getSharedPreferences("JarvisAppData",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = storedPassFile.edit();
+                        if(storedPassFile.contains("Password")) {
+                            editor.remove("Password");
+                            editor.apply();
+                        }
+                        Intent startIntent = new Intent(myContext, MainActivity.class);
+                        myContext.startActivity(startIntent);
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = alertBuilder.create();
+        alert11.show();
+    }
+
+    public void postData(final DataPacket packet, final Context activityContext) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.i("Response",response.trim());
                         Toast.makeText(myContext.getApplicationContext(), response.trim(), Toast.LENGTH_SHORT).show();
+                        if(packet.pack_type==CHANGE_PASS){
+                            if(response.trim().equals("New password accepted")){
+                                getSavePassDialog(packet.newPassword, activityContext);
+                            }
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override

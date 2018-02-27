@@ -38,7 +38,7 @@ public class ModeSelectActivity extends AppCompatActivity {
                     colSelectBtn.setEnabled(false);
                     soundReactBtn.setEnabled(false);
                 }
-                RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
+                RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
 
             }
         });
@@ -49,7 +49,7 @@ public class ModeSelectActivity extends AppCompatActivity {
     public void startAutoMode(View view){
         dataHandler.setMode("1");
         DataPacket packet = new DataPacket("1",MODE);
-        RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
+        RequestsSingleton.getInstance(getApplicationContext()).postData(packet, this);
     }
 
     public void startSelectColour(View view){
@@ -62,7 +62,7 @@ public class ModeSelectActivity extends AppCompatActivity {
     public void startSoundReact(View view){
         dataHandler.setMode("3");
         DataPacket packet = new DataPacket("3",MODE);
-        RequestsSingleton.getInstance(getApplicationContext()).postData(packet);
+        RequestsSingleton.getInstance(getApplicationContext()).postData(packet, this);
     }
 
 }
