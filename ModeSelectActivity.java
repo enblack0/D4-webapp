@@ -19,29 +19,11 @@ public class ModeSelectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Switch enableSwitch = findViewById(R.id.onSwitch);
-        enableSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                DataPacket packet = new DataPacket(isChecked, DataPacket.packet_type.ENABLE);
-                Button autoModeBtn = findViewById(R.id.autoModeBtn);
-                Button colSelectBtn = findViewById(R.id.colSelectBtn);
-                Button soundReactBtn = findViewById(R.id.soundReactBtn);
-                if(isChecked){
-                    autoModeBtn.setEnabled(true);
-                    colSelectBtn.setEnabled(true);
-                    soundReactBtn.setEnabled(true);
-                }else{
-                    autoModeBtn.setEnabled(false);
-                    colSelectBtn.setEnabled(false);
-                    soundReactBtn.setEnabled(false);
-                }
-                RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
+    }
 
-            }
-        });
-       // nukeSSlCerts.nuke();
-
+    public void toggleEnable(View view){
+        DataPacket packet = new DataPacket(true, DataPacket.packet_type.ENABLE);
+        RequestsSingleton.getInstance(getApplicationContext()).postData(packet, this);
     }
 
     public void startAutoMode(View view){
