@@ -14,8 +14,6 @@ import org.json.JSONObject;
 import static com.enb1g16.activitylauncher.DataPacket.packet_type.MODE;
 
 public class ModeSelectActivity extends AppCompatActivity {
-    public DataHandler dataHandler = new DataHandler("1",255); //initialize mode to 1 and colours to 255
-    //public NukeSSLCerts nukeSSlCerts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +45,6 @@ public class ModeSelectActivity extends AppCompatActivity {
     }
 
     public void startAutoMode(View view){
-        dataHandler.setMode("1");
         DataPacket packet = new DataPacket("1",MODE);
         RequestsSingleton.getInstance(getApplicationContext()).postData(packet, this);
     }
@@ -60,7 +57,6 @@ public class ModeSelectActivity extends AppCompatActivity {
     }
 
     public void startSoundReact(View view){
-        dataHandler.setMode("3");
         DataPacket packet = new DataPacket("3",MODE);
         RequestsSingleton.getInstance(getApplicationContext()).postData(packet, this);
     }
