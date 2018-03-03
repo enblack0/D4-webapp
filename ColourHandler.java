@@ -9,7 +9,7 @@ import org.json.JSONObject;
  * Created by user on 20/02/2018.
  */
 
-public class DataHandler {
+public class ColourHandler {
 
     private String colour1;
     private String colour2;
@@ -18,7 +18,7 @@ public class DataHandler {
     private String r1,g1,b1,r2,g2,b2,r3,g3,b3;
 
     //constructor to initialise a uniform colour
-    public DataHandler(String startMode, int startColour){
+    public ColourHandler(String startMode, int startColour){
         mode = startMode;
         setR1(startColour);
         setG1(startColour);

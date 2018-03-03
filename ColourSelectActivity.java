@@ -11,13 +11,13 @@ import org.json.JSONObject;
 
 public class ColourSelectActivity extends AppCompatActivity {
 
-    private DataHandler dataHandler = new DataHandler("2",255);
+    private ColourHandler colourHandler = new ColourHandler("2",255);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //send initial colour data
-        DataPacket packet = dataHandler.getProcessedData();
+        DataPacket packet = colourHandler.getProcessedData();
         RequestsSingleton.getInstance(getApplicationContext()).postData(packet, this);
         setContentView(R.layout.activity_colour_select);
         SeekBar r1SeekBar = findViewById(R.id.r1SeekBar);
@@ -52,7 +52,7 @@ public class ColourSelectActivity extends AppCompatActivity {
     public SeekBar.OnSeekBarChangeListener b1SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            DataPacket packet = dataHandler.getProcessedData();
+            DataPacket packet = colourHandler.getProcessedData();
             RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
@@ -60,9 +60,9 @@ public class ColourSelectActivity extends AppCompatActivity {
         }
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-            dataHandler.setB1(progress);
+            colourHandler.setB1(progress);
             RelativeLayout colour1Layout = findViewById(R.id.colour1Layout);
-            colour1Layout.setBackgroundColor(Color.parseColor(dataHandler.getBackgroundColour1()));
+            colour1Layout.setBackgroundColor(Color.parseColor(colourHandler.getBackgroundColour1()));
 
         }
     };
@@ -70,7 +70,7 @@ public class ColourSelectActivity extends AppCompatActivity {
     public SeekBar.OnSeekBarChangeListener g1SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            DataPacket packet = dataHandler.getProcessedData();
+            DataPacket packet = colourHandler.getProcessedData();
             RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
@@ -78,16 +78,16 @@ public class ColourSelectActivity extends AppCompatActivity {
         }
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-            dataHandler.setG1(progress);
+            colourHandler.setG1(progress);
             RelativeLayout colour1Layout = findViewById(R.id.colour1Layout);
-            colour1Layout.setBackgroundColor(Color.parseColor(dataHandler.getBackgroundColour1()));
+            colour1Layout.setBackgroundColor(Color.parseColor(colourHandler.getBackgroundColour1()));
         }
     };
 
     public SeekBar.OnSeekBarChangeListener r1SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            DataPacket packet = dataHandler.getProcessedData();
+            DataPacket packet = colourHandler.getProcessedData();
             RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
@@ -95,16 +95,16 @@ public class ColourSelectActivity extends AppCompatActivity {
         }
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-            dataHandler.setR1(progress);
+            colourHandler.setR1(progress);
             RelativeLayout colour1Layout = findViewById(R.id.colour1Layout);
-            colour1Layout.setBackgroundColor(Color.parseColor(dataHandler.getBackgroundColour1()));
+            colour1Layout.setBackgroundColor(Color.parseColor(colourHandler.getBackgroundColour1()));
         }
     };
 
     public SeekBar.OnSeekBarChangeListener r2SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            DataPacket packet = dataHandler.getProcessedData();
+            DataPacket packet = colourHandler.getProcessedData();
             RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
@@ -112,16 +112,16 @@ public class ColourSelectActivity extends AppCompatActivity {
         }
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-            dataHandler.setR2(progress);
+            colourHandler.setR2(progress);
             RelativeLayout colour2Layout = findViewById(R.id.colour2Layout);
-            colour2Layout.setBackgroundColor(Color.parseColor(dataHandler.getBackgroundColour2()));
+            colour2Layout.setBackgroundColor(Color.parseColor(colourHandler.getBackgroundColour2()));
         }
     };
 
     public SeekBar.OnSeekBarChangeListener g2SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            DataPacket packet = dataHandler.getProcessedData();
+            DataPacket packet = colourHandler.getProcessedData();
             RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
@@ -129,16 +129,16 @@ public class ColourSelectActivity extends AppCompatActivity {
         }
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-            dataHandler.setG2(progress);
+            colourHandler.setG2(progress);
             RelativeLayout colour2Layout = findViewById(R.id.colour2Layout);
-            colour2Layout.setBackgroundColor(Color.parseColor(dataHandler.getBackgroundColour2()));
+            colour2Layout.setBackgroundColor(Color.parseColor(colourHandler.getBackgroundColour2()));
         }
     };
 
     public SeekBar.OnSeekBarChangeListener b2SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            DataPacket packet = dataHandler.getProcessedData();
+            DataPacket packet = colourHandler.getProcessedData();
             RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
@@ -146,16 +146,16 @@ public class ColourSelectActivity extends AppCompatActivity {
         }
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-            dataHandler.setB2(progress);
+            colourHandler.setB2(progress);
             RelativeLayout colour2Layout = findViewById(R.id.colour2Layout);
-            colour2Layout.setBackgroundColor(Color.parseColor(dataHandler.getBackgroundColour2()));
+            colour2Layout.setBackgroundColor(Color.parseColor(colourHandler.getBackgroundColour2()));
         }
     };
 
     public SeekBar.OnSeekBarChangeListener r3SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            DataPacket packet = dataHandler.getProcessedData();
+            DataPacket packet = colourHandler.getProcessedData();
             RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
@@ -163,16 +163,16 @@ public class ColourSelectActivity extends AppCompatActivity {
         }
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-            dataHandler.setR3(progress);
+            colourHandler.setR3(progress);
             RelativeLayout colour3Layout = findViewById(R.id.colour3Layout);
-            colour3Layout.setBackgroundColor(Color.parseColor(dataHandler.getBackgroundColour3()));
+            colour3Layout.setBackgroundColor(Color.parseColor(colourHandler.getBackgroundColour3()));
         }
     };
 
     public SeekBar.OnSeekBarChangeListener g3SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            DataPacket packet = dataHandler.getProcessedData();
+            DataPacket packet = colourHandler.getProcessedData();
             RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
@@ -180,16 +180,16 @@ public class ColourSelectActivity extends AppCompatActivity {
         }
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-            dataHandler.setG3(progress);
+            colourHandler.setG3(progress);
             RelativeLayout colour3Layout = findViewById(R.id.colour3Layout);
-            colour3Layout.setBackgroundColor(Color.parseColor(dataHandler.getBackgroundColour3()));
+            colour3Layout.setBackgroundColor(Color.parseColor(colourHandler.getBackgroundColour3()));
         }
     };
 
     public SeekBar.OnSeekBarChangeListener b3SeekBarListener = new SeekBar.OnSeekBarChangeListener(){
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-            DataPacket packet = dataHandler.getProcessedData();
+            DataPacket packet = colourHandler.getProcessedData();
             RequestsSingleton.getInstance(getApplicationContext()).postData(packet, getApplicationContext());
         }
         @Override
@@ -197,9 +197,9 @@ public class ColourSelectActivity extends AppCompatActivity {
         }
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-            dataHandler.setB3(progress);
+            colourHandler.setB3(progress);
             RelativeLayout colour3Layout = findViewById(R.id.colour3Layout);
-            colour3Layout.setBackgroundColor(Color.parseColor(dataHandler.getBackgroundColour3()));
+            colour3Layout.setBackgroundColor(Color.parseColor(colourHandler.getBackgroundColour3()));
         }
     };
 }
