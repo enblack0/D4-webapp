@@ -36,7 +36,6 @@ public class RequestsSingleton {
     private RequestQueue myRequestQueue;
     private static Context myContext;
     private String password;
-    private String responseCode = "init";
 
     private String url = "https://192.168.0.51/index.php"; //ip address of rpi
     //private String url = "https://192.168.0.51:8080"; //testing python

@@ -14,7 +14,8 @@ import java.security.cert.X509Certificate;
 
 /**
  * Created by user on 21/02/2018.
- * lifted from internet, allows app to connect to self-signed certificate
+ * lifted from internet, forces app to trust self-signed certificate
+ * reference: https://newfivefour.com/android-trust-all-ssl-certificates.html
  */
 
 public class NukeSSLCerts {
