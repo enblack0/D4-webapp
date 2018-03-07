@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mode_select); //should really be activity_login!
+        setContentView(R.layout.activity_main);
         SharedPreferences storedPassFile = this.getSharedPreferences("JarvisAppData",Context.MODE_PRIVATE);
         Button storedPwdButton = findViewById(R.id.storedPwdBtn);
         if(storedPassFile.contains("Password")){

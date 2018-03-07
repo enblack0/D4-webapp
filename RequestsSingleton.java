@@ -6,18 +6,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +24,11 @@ import static com.enb1g16.activitylauncher.DataPacket.packet_type.FULL_DATA;
 import static com.enb1g16.activitylauncher.DataPacket.packet_type.MODE;
 
 /**
- * Created by user on 19/02/2018.
+ * reference: methods marked with *** were taken from this page:
+ * https://developer.android.com/training/volley/requestqueue.html
+ *
+ * postLogin and postData methods were adapted from this page:
+ * https://www.itsalif.info/content/android-volley-tutorial-http-get-post-put
  */
 
 public class RequestsSingleton {
@@ -45,19 +45,19 @@ public class RequestsSingleton {
         url = Url;
     }
 
-    private RequestsSingleton(Context context) {
+    private RequestsSingleton(Context context) { //***
         myContext = context;
         myRequestQueue = getRequestQueue();
     }
 
-    public static synchronized RequestsSingleton getInstance(Context context) {
+    public static synchronized RequestsSingleton getInstance(Context context) { //***
         if (myInstance == null) {
             myInstance = new RequestsSingleton(context);
         }
         return myInstance;
     }
 
-    public RequestQueue getRequestQueue() {
+    public RequestQueue getRequestQueue() { //***
         if (myRequestQueue == null) {
             myRequestQueue = Volley.newRequestQueue(myContext.getApplicationContext());
         }
@@ -66,7 +66,7 @@ public class RequestsSingleton {
 
     public<T> void addToRequestQueue(Request<T> request){
         getRequestQueue().add(request);
-    }
+    } //***
 
     private void getSavePassDialog(final String newPassword, final Context activityContext){
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(activityContext);

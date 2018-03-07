@@ -1,9 +1,5 @@
 package com.enb1g16.activitylauncher;
 
-import android.content.Context;
-import android.util.Log;
-
-import org.json.JSONObject;
 
 /**
  * Created by user on 20/02/2018.
