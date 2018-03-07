@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void attemptStoredPwdLogin(View view) {
+        EditText urlEditText = findViewById(R.id.urlEditText);
+        String url = urlEditText.getText().toString();
+        RequestsSingleton.getInstance(getApplicationContext()).setURL(url);
         SharedPreferences storedPassFile = this.getSharedPreferences("JarvisAppData", Context.MODE_PRIVATE);
         final String password = storedPassFile.getString("Password", null);
         RequestsSingleton.getInstance(getApplicationContext()).postLogin(password);
